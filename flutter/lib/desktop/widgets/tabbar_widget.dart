@@ -590,95 +590,95 @@ class _DesktopTabState extends State<DesktopTab>
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // 【已注释：隐藏整个左侧区域，包括Logo、标题和标签页图标】
-        // Expanded(
-        //     child: GestureDetector(
-        //         // custom double tap handler
-        //         onTap: !(bind.isIncomingOnly() && isInHomePage()) &&
-        //                 showMaximize
-        //             ? () {
-        //                 final current = DateTime.now().millisecondsSinceEpoch;
-        //                 final elapsed = current - _lastClickTime;
-        //                 _lastClickTime = current;
-        //                 if (elapsed < bind.getDoubleClickTime()) {
-        //                   // onDoubleTap
-        //                   toggleMaximize(isMainWindow)
-        //                       .then((value) => stateGlobal.setMaximized(value));
-        //                 }
-        //               }
-        //             : null,
-        //         onPanStart: (_) => startDragging(isMainWindow),
-        //         onPanCancel: () {
-        //           // We want to disable dragging of the tab area in the tab bar.
-        //           // Disable dragging is needed because macOS handles dragging by default.
-        //           if (isMacOS) {
-        //             setMovable(isMainWindow, false);
-        //           }
-        //         },
-        //         onPanEnd: (_) {
-        //           if (isMacOS) {
-        //             setMovable(isMainWindow, false);
-        //           }
-        //         },
-        //         child: Row(
-        //           children: [
-        //             Offstage(
-        //                 offstage: !isMacOS,
-        //                 child: const SizedBox(
-        //                   width: 78,
-        //                 )),
-        //             Offstage(
-        //               offstage: kUseCompatibleUiMode || isMacOS,
-        //               child: Row(children: [
-        //                 Offstage(
-        //                   offstage: !showLogo,
-        //                   child: loadIcon(16),
-        //                 ),
-        //                 Offstage(
-        //                     offstage: !showTitle,
-        //                     child: const Text(
-        //                       "RustDesk",
-        //                       style: TextStyle(fontSize: 13),
-        //                     ).marginOnly(left: 2))
-        //               ]).marginOnly(
-        //                 left: 5,
-        //                 right: 10,
-        //               ),
-        //             ),
-        //             Expanded(
-        //                 child: Listener(
-        //                     // handle mouse wheel
-        //                     onPointerSignal: (e) {
-        //                       if (e is PointerScrollEvent) {
-        //                         final sc =
-        //                             controller.state.value.scrollController;
-        //                         if (!sc.canScroll) return;
-        //                         _scrollDebounce.call(() {
-        //                           double adjust = 2.5;
-        //                           sc.animateTo(
-        //                               sc.offset + e.scrollDelta.dy * adjust,
-        //                               duration: Duration(milliseconds: 200),
-        //                               curve: Curves.ease);
-        //                         });
-        //                       }
-        //                     },
-        //                     child: _ListView(
-        //                       controller: controller,
-        //                       invisibleTabKeys: invisibleTabKeys,
-        //                       tabBuilder: tabBuilder,
-        //                       tabMenuBuilder: tabMenuBuilder,
-        //                       labelGetter: labelGetter,
-        //                       maxLabelWidth: maxLabelWidth,
-        //                       selectedTabBackgroundColor:
-        //                           selectedTabBackgroundColor,
-        //                       unSelectedTabBackgroundColor:
-        //                           unSelectedTabBackgroundColor,
-        //                       selectedBorderColor: selectedBorderColor,
-        //                     ))),
-        //           ],
-        //         ))),
+        Expanded(
+            child: GestureDetector(
+                // custom double tap handler
+                onTap: !(bind.isIncomingOnly() && isInHomePage()) &&
+                        showMaximize
+                    ? () {
+                        final current = DateTime.now().millisecondsSinceEpoch;
+                        final elapsed = current - _lastClickTime;
+                        _lastClickTime = current;
+                        if (elapsed < bind.getDoubleClickTime()) {
+                          // onDoubleTap
+                          toggleMaximize(isMainWindow)
+                              .then((value) => stateGlobal.setMaximized(value));
+                        }
+                      }
+                    : null,
+                onPanStart: (_) => startDragging(isMainWindow),
+                onPanCancel: () {
+                  // We want to disable dragging of the tab area in the tab bar.
+                  // Disable dragging is needed because macOS handles dragging by default.
+                  if (isMacOS) {
+                    setMovable(isMainWindow, false);
+                  }
+                },
+                onPanEnd: (_) {
+                  if (isMacOS) {
+                    setMovable(isMainWindow, false);
+                  }
+                },
+                child: Row(
+                  children: [
+                    Offstage(
+                        offstage: !isMacOS,
+                        child: const SizedBox(
+                          width: 78,
+                        )),
+                    Offstage(
+                      offstage: kUseCompatibleUiMode || isMacOS,
+                      child: Row(children: [
+                        Offstage(
+                          offstage: !showLogo,
+                          child: loadIcon(16),
+                        ),
+                        Offstage(
+                            offstage: !showTitle,
+                            child: const Text(
+                              "RustDesk",
+                              style: TextStyle(fontSize: 13),
+                            ).marginOnly(left: 2))
+                      ]).marginOnly(
+                        left: 5,
+                        right: 10,
+                      ),
+                    ),
+                    Expanded(
+                        child: Listener(
+                            // handle mouse wheel
+                            onPointerSignal: (e) {
+                              if (e is PointerScrollEvent) {
+                                final sc =
+                                    controller.state.value.scrollController;
+                                if (!sc.canScroll) return;
+                                _scrollDebounce.call(() {
+                                  double adjust = 2.5;
+                                  sc.animateTo(
+                                      sc.offset + e.scrollDelta.dy * adjust,
+                                      duration: Duration(milliseconds: 200),
+                                      curve: Curves.ease);
+                                });
+                              }
+                            },
+                            child: _ListView(
+                              controller: controller,
+                              invisibleTabKeys: invisibleTabKeys,
+                              tabBuilder: tabBuilder,
+                              tabMenuBuilder: tabMenuBuilder,
+                              labelGetter: labelGetter,
+                              maxLabelWidth: maxLabelWidth,
+                              selectedTabBackgroundColor:
+                                  selectedTabBackgroundColor,
+                              unSelectedTabBackgroundColor:
+                                  unSelectedTabBackgroundColor,
+                              selectedBorderColor: selectedBorderColor,
+                            ))),
+                  ],
+                ))),
         
         // 添加空的占位容器，保持布局结构
-        Expanded(child: Container()),
+        // Expanded(child: Container()),
         // hide simulated action buttons when we in compatible ui mode, because of reusing system title bar.
         WindowActionPanel(
           isMainWindow: isMainWindow,

@@ -307,18 +307,19 @@ class _ConnectionPageState extends State<ConnectionPage>
     return Column(
       children: [
         Expanded(
-            child: Column(
-          children: [
-            Row(
-              children: [
-                Flexible(child: _buildRemoteIDTextField(context)),
-              ],
-            ).marginOnly(top: 22),
-            SizedBox(height: 12),
-            Divider().paddingOnly(right: 12),
-            Expanded(child: PeerTabPage()),
-          ],
-        ).paddingOnly(left: 12.0)),
+          child: Column(
+            children: [
+              // Row(
+              //   children: [
+              //     Flexible(child: _buildRemoteIDTextField(context)),
+              //   ],
+              // ).marginOnly(top: 22),
+              // SizedBox(height: 12),
+              // Divider().paddingOnly(right: 12),
+              Expanded(child: PeerTabPage()),
+            ],
+          ).paddingOnly(left: 12.0),
+        ),
         if (!isOutgoingOnly) const Divider(height: 1),
         if (!isOutgoingOnly) OnlineStatusWidget()
       ],
@@ -327,15 +328,10 @@ class _ConnectionPageState extends State<ConnectionPage>
 
   /// Callback for the connect button.
   /// Connects to the selected peer.
-  void onConnect(
-      {bool isFileTransfer = false,
-      bool isViewCamera = false,
-      bool isTerminal = false}) {
+  void onConnect({bool isFileTransfer = false, bool isViewCamera = false}) {
     var id = _idController.id;
     connect(context, id,
-        isFileTransfer: isFileTransfer,
-        isViewCamera: isViewCamera,
-        isTerminal: isTerminal);
+        isFileTransfer: isFileTransfer, isViewCamera: isViewCamera);
   }
 
   /// UI for the remote ID TextField.
@@ -532,23 +528,22 @@ class _ConnectionPageState extends State<ConnectionPage>
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Center(
-                    child: StatefulBuilder(
-                      builder: (context, setState) {
-                        var offset = Offset(0, 0);
-                        return Obx(() => InkWell(
-                          child: _menuOpen.value
-                              ? Transform.rotate(
-                                  angle: pi,
-                                  child: Icon(IconFont.more, size: 14),
-                                )
-                              : Icon(IconFont.more, size: 14),
-                          onTapDown: (e) {
-                            offset = e.globalPosition;
-                          },
-                          onTap: () async {
-                            _menuOpen.value = true;
-                            final x = offset.dx;
-                            final y = offset.dy;
+                    child: Obx(() {
+                      var offset = Offset(0, 0);
+                      return InkWell(
+                        child: _menuOpen.value
+                            ? Transform.rotate(
+                                angle: pi,
+                                child: Icon(IconFont.more, size: 14),
+                              )
+                            : Icon(IconFont.more, size: 14),
+                        onTapDown: (e) {
+                          offset = e.globalPosition;
+                        },
+                        onTap: () async {
+                          _menuOpen.value = true;
+                          final x = offset.dx;
+                          final y = offset.dy;
                           await mod_menu
                               .showMenu(
                             context: context,
@@ -561,10 +556,6 @@ class _ConnectionPageState extends State<ConnectionPage>
                               (
                                 'View camera',
                                 () => onConnect(isViewCamera: true)
-                              ),
-                              (
-                                'Terminal',
-                                () => onConnect(isTerminal: true)
                               ),
                             ]
                                 .map((e) => MenuEntryButton<String>(
@@ -593,9 +584,8 @@ class _ConnectionPageState extends State<ConnectionPage>
                             _menuOpen.value = false;
                           });
                         },
-                        ));
-                      },
-                    ),
+                      );
+                    }),
                   ),
                 ),
               ]),

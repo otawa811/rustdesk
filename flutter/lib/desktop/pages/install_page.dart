@@ -184,23 +184,22 @@ class _InstallPageBodyState extends State<_InstallPageBody>
                         children: [
                           Text(translate('agreement_tip'))
                               .marginOnly(bottom: em),
-                          InkWell(
-                            hoverColor: Colors.transparent,
-                            onTap: () => launchUrlString(
-                                'https://rustdesk.com/privacy.html'),
-                            child: Tooltip(
-                              message: 'https://rustdesk.com/privacy.html',
-                              child: Row(children: [
-                                Icon(Icons.launch_outlined, size: 16)
-                                    .marginOnly(right: 5),
-                                Text(
-                                  translate('End-user license agreement'),
-                                  style: const TextStyle(
-                                      decoration: TextDecoration.underline),
-                                )
-                              ]),
-                            ),
-                          ),
+                          // InkWell(
+                          //   hoverColor: Colors.transparent,
+                          //   onTap: () => launchUrlString(
+                          //       'https://rustdesk.com/privacy.html'),
+                          //   child: Tooltip(
+                          //     message: 'https://rustdesk.com/privacy.html',
+                          //     child: Row(children: [
+                          //       Icon(Icons.launch_outlined, size: 16)
+                          //           .marginOnly(right: 5),
+                          //       Text(
+                          //         translate('End-user license agreement'),
+                          //         style: const TextStyle(
+                          //             decoration: TextDecoration.underline),
+                          //       )
+                          //     ]),
+                          //   ),
                         ],
                       )
                     ],
@@ -244,14 +243,14 @@ class _InstallPageBodyState extends State<_InstallPageBody>
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ).paddingSymmetric(horizontal: 4 * em, vertical: 3 * em),
         ));
   }
 
   void install() {
-    do_install() {
+    void do_install() {
       btnEnabled.value = false;
       showProgress.value = true;
       String args = '';

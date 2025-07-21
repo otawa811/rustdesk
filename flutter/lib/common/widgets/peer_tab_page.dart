@@ -557,10 +557,10 @@ class _PeerTabPageState extends State<PeerTabPage>
           index: PeerTabIndex.ab, loading: gFFI.abModel.currentAbLoading),
       _createRefresh(
           index: PeerTabIndex.group, loading: gFFI.groupModel.groupLoading),
-      Offstage(
-        offstage: model.currentTabCachedPeers.isEmpty,
-        child: _createMultiSelection(),
-      ),
+      // Offstage(
+      //   offstage: model.currentTabCachedPeers.isEmpty,
+      //   child: _createMultiSelection(),
+      // ),
       _createPeerViewTypeSwitch(context),
       Offstage(
         offstage: model.currentTab == PeerTabIndex.recent.index,

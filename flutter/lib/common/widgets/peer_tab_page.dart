@@ -628,7 +628,7 @@ class _PeerTabPageState extends State<PeerTabPage>
             index: PeerTabIndex.group, loading: gFFI.groupModel.groupLoading),
     ];
     final List<Widget> dynamicActions = [
-      if (model.currentTabCachedPeers.isNotEmpty) _createMultiSelection(),
+      // if (model.currentTabCachedPeers.isNotEmpty) _createMultiSelection(),
       if (model.currentTab != PeerTabIndex.recent.index) PeerSortDropdown(),
       if (model.currentTab == PeerTabIndex.ab.index) _toggleTags()
     ];

@@ -390,9 +390,15 @@ const kAuthReqTypeOidc = 'oidc/';
 
 // call this directly
 Future<bool?> loginDialog() async {
-  var username =
-      TextEditingController(text: UserModel.getLocalUserInfo()?['name'] ?? '');
+
+  // 被控端
+  var username = TextEditingController(text: UserModel.getLocalUserInfo()?['name'] ?? '');
   var password = TextEditingController();
+
+  // 主控端
+  // var username = TextEditingController(text: 'admin');
+  // var password = TextEditingController(text: 'hangting.com');
+
   final userFocusNode = FocusNode()..requestFocus();
   Timer(Duration(milliseconds: 100), () => userFocusNode..requestFocus());
 

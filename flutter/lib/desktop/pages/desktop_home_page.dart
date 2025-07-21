@@ -64,8 +64,8 @@ class _DesktopHomePageState extends State<DesktopHomePage>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (!bind.mainIsInstalled()) buildLeftPane(context),
-        if (!bind.mainIsInstalled() && !isIncomingOnly) const VerticalDivider(width: 1),
-        if (!isIncomingOnly) Expanded(child: buildRightPane(context)),
+        // if (!bind.mainIsInstalled() && !isIncomingOnly) const VerticalDivider(width: 1),
+        if (bind.mainIsInstalled() && !isIncomingOnly) Expanded(child: buildRightPane(context)),
       ],
     ));
   }

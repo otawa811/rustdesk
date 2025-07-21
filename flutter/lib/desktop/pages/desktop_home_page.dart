@@ -90,8 +90,8 @@ class _DesktopHomePageState extends State<DesktopHomePage>
         child: loadLogo(),
       ),
       buildTip(context),
-      if (!isOutgoingOnly) buildIDBoard(context),
-      if (!isOutgoingOnly) buildPasswordBoard(context),
+      // if (!isOutgoingOnly) buildIDBoard(context),
+      // if (!isOutgoingOnly) buildPasswordBoard(context),
       FutureBuilder<Widget>(
         future: Future.value(
             Obx(() => buildHelpCards(stateGlobal.updateUrl.value))),
@@ -211,16 +211,16 @@ class _DesktopHomePageState extends State<DesktopHomePage>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Text(
-                        //   translate("ID"),
-                        //   style: TextStyle(
-                        //       fontSize: 14,
-                        //       color: Theme.of(context)
-                        //           .textTheme
-                        //           .titleLarge
-                        //           ?.color
-                        //           ?.withOpacity(0.5)),
-                        // ).marginOnly(top: 5), // 【已注释：ID组件】
+                        Text(
+                          translate("ID"),
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.color
+                                  ?.withOpacity(0.5)),
+                        ).marginOnly(top: 5),
                         buildPopupMenu(context)
                       ],
                     ),
@@ -312,12 +312,12 @@ class _DesktopHomePageState extends State<DesktopHomePage>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // AutoSizeText(
-                  //   translate("One-time Password"),
-                  //   style: TextStyle(
-                  //       fontSize: 14, color: textColor?.withOpacity(0.5)),
-                  //   maxLines: 1,
-                  // ), // 【已注释：One-time Password组件】
+                  AutoSizeText(
+                    translate("One-time Password"),
+                    style: TextStyle(
+                        fontSize: 14, color: textColor?.withOpacity(0.5)),
+                    maxLines: 1,
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -398,25 +398,25 @@ class _DesktopHomePageState extends State<DesktopHomePage>
         children: [
           Column(
             children: [
-              // if (!isOutgoingOnly)
-              //   Align(
-              //     alignment: Alignment.centerLeft,
-              //     child: Text(
-              //       translate("Your Desktop"),
-              //       style: Theme.of(context).textTheme.titleLarge,
-              //     ),
-              //   ), // 【已注释：Your Desktop组件】
+              if (!isOutgoingOnly)
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    translate("Your Desktop"),
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                ),
             ],
           ),
           SizedBox(
             height: 10.0,
           ),
-          // if (!isOutgoingOnly)
-          //   Text(
-          //     translate("desk_tip"),
-          //     overflow: TextOverflow.clip,
-          //     style: Theme.of(context).textTheme.bodySmall,
-          //   ), // 【已注释：desk_tip组件】
+          if (!isOutgoingOnly)
+            Text(
+              translate("desk_tip"),
+              overflow: TextOverflow.clip,
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
           if (isOutgoingOnly)
             Text(
               translate("outgoing_only_desk_tip"),

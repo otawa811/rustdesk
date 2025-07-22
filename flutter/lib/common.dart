@@ -615,8 +615,10 @@ class MyTheme {
         return ThemeMode.light;
       case "dark":
         return ThemeMode.dark;
-      default:
+      case "system":
         return ThemeMode.system;
+      default:
+        return ThemeMode.dark; // 只有未设置时才默认 dark
     }
   }
 }
